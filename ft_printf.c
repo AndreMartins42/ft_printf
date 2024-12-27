@@ -6,7 +6,7 @@
 /*   By: anmendes <anmendes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:08:04 by anmendes          #+#    #+#             */
-/*   Updated: 2024/11/12 16:32:06 by anmendes         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:30:55 by anmendes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_printf(const char *format, ...)
 
 	i = 0;
 	va_start(args, format);
+	if (format == NULL)
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
@@ -31,7 +33,8 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 			i += ft_putchar(*format);
-		format++;
+		if (*format)
+			format++;
 	}
 	va_end(args);
 	return (i);
@@ -60,3 +63,11 @@ int	ft_format(const char format, va_list args)
 		i += ft_putchar('%');
 	return (i);
 }
+
+/* int main (void)
+{
+	int *result;
+	
+	ft_printf("%x\n", 1234);
+	printf("%x\n", 1234);
+} */
